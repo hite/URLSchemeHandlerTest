@@ -25,6 +25,7 @@ static const StringVectorFunction functions[] {
 结论：已知的约定俗称的都不能定义，包括，https、http、about，当然也包括，data、blob、ftp 等，如果你这样做了，会收到一个错误`''https' is a URL scheme that WKWebView handles natively'`
 ### -  自定义 scheme ，哪些 HTML 里元素会触发自定义请求？
 根据作者在常见的 html 元素里搜集的会触发资源下载或者 navigation 逻辑的标签，整理了下面的表格。
+
  标签 |  domain 是 http 情况 |  domain 是 https 情况 | 是否触发 decidePolicyForNavigation<br/>（此时意味着 webkit 有 bug）
 -----|----|---|--
 img 的 src | ✅|✅|--
@@ -40,6 +41,7 @@ a 标签的 href 属性| ✅|✅| 😈
 xhr 的 url |❌ |❌
 form post | ✅|✅| 😈
 form get | ✅|✅| 😈
+
 总结一下；按照 [MDN 里混合内容](https://developer.mozilla.org/zh-CN/docs/Security/MixedContent)的说法，**混合被动/显示内容**在任何情况下都会触发，**混合活动内容** 在 https 下不会触发。
 
 在 https 下的 xhr 的请求和混合活动内容，都不能触发的原因其实是两个机制；
