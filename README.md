@@ -1,1 +1,3 @@
-# URLSchemeHandlerTest
+# 对 webview 静态资源拦截
+不同方式，性能对比测试。
+结果见 `JS 资源拦截性能测试`文件
