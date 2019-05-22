@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+    <script type="text/javascript">
+        console.log('after head start')
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -9,184 +12,47 @@
 </head>
 
 <body>
-    <p>测试哪些请求会触发自定义 urlschemehandler</p>
-    <p>被动元素</p>
-    <ul>
-        <li>audio 标签
-            <audio controls src="jsb://test.com/media/examples/audio.mp3">
-                Your browser does not support the
-                <code>audio</code> element.
-            </audio>
-        </li>
-        <li>img 标签<img class="fit-picture" src="jsb://test.com/media/examples/img.jpg"
-                alt="Grapefruit slice atop a pile of other slices" />
-                <img class="fit-picture" src="media/examples/img2.jpg"
-                alt="Grapefruit slice atop a pile of other slices" />
-                <img class="fit-picture" src="/media/examples/img3.jpg"
-                alt="Grapefruit slice atop a pile of other slices" />
-        </li>
-
-        <li> video 标签<video controls width="250">
-                <source src="jsb://test.com/media/examples/video.webm" type="video/webm">
-                <source src="jsb://test.com/media/examples/video.mp4" type="video/mp4">
-                Sorry, your browser doesn't support embedded videos.
-            </video>
-        </li>
-        <li>
-            embed 标签
-            <embed type="video/webm" src="jsb://test.com/media/examples/embed.mp4" width="250" height="200">
-        </li>
-    </ul>
-    <p>主动元素</p>
-    <ul>
-        <li> script 标签
-            <script src="jsb://test.com/javascript.js"></script>
-        </li>
-        <li>link 标签
-            <link href="jsb://test.com/media/examples/link.css" rel="stylesheet">
-        </li>
-        <li> XHR 请求
-            <script>var oReq = new XMLHttpRequest();
-                oReq.addEventListener("load", function(){console.log('onload')});
-                oReq.open("GET", "//test.com/www.example.org/get-xhr.do");
-                oReq.send({a:1,b:3});</script>
-        </li>
-        <li> XHR POST 请求
-            <script>var xhr = new XMLHttpRequest();
-                xhr.open("POST", 'jsb://test.com/server/post-xhr.do', true);
-                
-                //发送合适的请求头信息
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                
-                xhr.onreadystatechange = function() {//Call a function when the state changes.
-                    if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-                        // 请求结束后,在此处写处理代码
-                    }
-                }
-            xhr.send("foo=bar&lorem=ipsum");
-</script>
-        </li>
-        
-        <li>iframe 标签
-            <iframe id="inlineFrameExample" title="Inline Frame Example" width="300" height="200"
-                src="jsb://test.com/www.openstreetmap.org/export/iframe.html">
-            </iframe>
-        </li>
-        <li>
-            All cases in CSS where a url value is used (@font-face, cursor, background-image, etc.)
-            <style>
-                @font-face {
-                    font-family: "Open Sans";
-                    src: url("jsb://test.com/fonts/OpenSans-Regular-webfont.woff2") format("woff2"),
-                        url("jsb://test.com/fonts/OpenSans-Regular-webfont.woff") format("woff");
-                }
-
-                .sam {
-                    background-image: url(jsb://test.com/background-image.png);
-                    font-size: 18px;
-                    color: green;
-                    cursor: url(jsb://test.com/cursor2.png) 2 2, pointer;
-                }
-            </style>
-            <div class="sam">
-                我来了
-            </div>
-        </li>
-        <li> object with data attribute.
-            <object type="application/pdf" data="jsb://test.com/media/examples/object-data.pdf" width="250" height="200">
-            </object>
-        </li>
-        <li>a 标签
-            <a href="jsb://test.com/fake.a.html">点这里到 a.html</a>
-        </li>
-        <li> get form 表单
-            <form action="jsb://test.com/get-form.do" method="GET">
-                <input type="text" name="name" value="ok" />
-            </form>
-        </li>
-        <li> post form 表单
-            <form action="jsb://test.com/post-form.do" method="POST">
-                <input type="text" name="name" value="ok" />
-            </form>
-        </li>
-    </ul>
     <script>
-        /*\
-|*|
-|*|  :: cookies.js ::
-|*|
-|*|  A complete cookies reader/writer framework with full unicode support.
-|*|
-|*|  Revision #3 - July 13th, 2017
-|*|
-|*|  https://developer.mozilla.org/en-US/docs/Web/API/document.cookie
-|*|  https://developer.mozilla.org/User:fusionchess
-|*|  https://github.com/madmurphy/cookies.js
-|*|
-|*|  This framework is released under the GNU Public License, version 3 or later.
-|*|  http://www.gnu.org/licenses/gpl-3.0-standalone.html
-|*|
-|*|  Syntaxes:
-|*|
-|*|  * docCookies.setItem(name, value[, end[, path[, domain[, secure]]]])
-|*|  * docCookies.getItem(name)
-|*|  * docCookies.removeItem(name[, path[, domain]])
-|*|  * docCookies.hasItem(name)
-|*|  * docCookies.keys()
-|*|
-\*/
-
-var docCookies = {
-  getItem: function (sKey) {
-    if (!sKey) { return null; }
-    return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
-  },
-  setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
-    if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
-    var sExpires = "";
-    if (vEnd) {
-      switch (vEnd.constructor) {
-        case Number:
-          sExpires = vEnd === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + vEnd;
-          /*
-          Note: Despite officially defined in RFC 6265, the use of `max-age` is not compatible with any
-          version of Internet Explorer, Edge and some mobile browsers. Therefore passing a number to
-          the end parameter might not work as expected. A possible solution might be to convert the the
-          relative time to an absolute time. For instance, replacing the previous line with:
-          */
-          /*
-          sExpires = vEnd === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; expires=" + (new Date(vEnd * 1e3 + Date.now())).toUTCString();
-          */
-          break;
-        case String:
-          sExpires = "; expires=" + vEnd;
-          break;
-        case Date:
-          sExpires = "; expires=" + vEnd.toUTCString();
-          break;
-      }
-    }
-    document.cookie = encodeURIComponent(sKey) + "=" + encodeURIComponent(sValue) + sExpires + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "") + (bSecure ? "; secure" : "");
-    return true;
-  },
-  removeItem: function (sKey, sPath, sDomain) {
-    if (!this.hasItem(sKey)) { return false; }
-    document.cookie = encodeURIComponent(sKey) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "");
-    return true;
-  },
-  hasItem: function (sKey) {
-    if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
-    return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
-  },
-  keys: function () {
-    var aKeys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
-    for (var nLen = aKeys.length, nIdx = 0; nIdx < nLen; nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
-    return aKeys;
-  }
-};
-        document.cookie = 'liang=wang'
-        // docCookies.setItem('name','hite', 2392349);
+        console.time('a-h_304');
     </script>
+    <script type="text/javascript"
+        src="https://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/js/dist/dll-5967231974.js"></script>
+    <script>
+        console.timeEnd('a-h_304');
+    </script>
+    <script>
+        console.time('a-h_200');
+        var a3 = new Date().getTime()
+        console.log('>', a3);
+    </script>
+    <script type="text/javascript" src="dll.js"></script>
+    <script>
+        console.timeEnd('a-h_200');
+        var a3 = new Date().getTime()
+        console.log('>>', a3);
+    </script>
+    <script>
+        console.time('a-h_200_proxy');
+        var a2_proxy = new Date().getTime();
+        console.log('>', a2_proxy);
+    </script>
+    <script type="text/javascript" src="dll.js?t=_proxy"></script>
+    <script>
+        console.timeEnd('a-h_200_proxy');
+        var b2_proxy = new Date().getTime();
+        console.log('>>', b2_proxy);
+    </script>
+    <script>
+        console.time('a-h_apphost');
+        var a3 = new Date().getTime()
+        console.log('>', a3);
+    </script>
+    <script type="text/javascript" src="jsb://dll.js"></script>
+    <script>
+        console.timeEnd('a-h_apphost');
+        console.log('>>', new Date().getTime());
+    </script>
+    <p>快使用双节棍，哼哼哈嘿</p>
 </body>
 
 </html>

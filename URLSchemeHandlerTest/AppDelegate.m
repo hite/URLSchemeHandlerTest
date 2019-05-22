@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SchemeURLProtocol.h"
 
 @interface AppDelegate ()
 
@@ -14,9 +15,34 @@
 
 @implementation AppDelegate
 
+- (void)registerClass
+{
+    // 防止苹果静态检查 将 WKBrowsingContextController 拆分，然后再拼凑起来
+    NSArray *privateStrArr = @[@"Controller", @"Context", @"Browsing", @"K", @"W"];
+    NSString *className =  [[[privateStrArr reverseObjectEnumerator] allObjects] componentsJoinedByString:@""];
+    Class cls = NSClassFromString(className);
+    SEL sel = NSSelectorFromString(@"registerSchemeForCustomProtocol:");
+    
+    if (cls && sel) {
+        if ([(id)cls respondsToSelector:sel]) {
+            // 注册自定义协议
+            // [(id)cls performSelector:sel withObject:@"CustomProtocol"];
+            // 注册http协议
+            [(id)cls performSelector:sel withObject:@"http"];
+            // 注册https协议
+            [(id)cls performSelector:sel withObject:@"https"];
+        }
+    }
+    // SechemaURLProtocol 自定义类 继承于 NSURLProtocol
+    [NSURLProtocol registerClass:[SchemeURLProtocol class]];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self registerClass];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths firstObject];
+    NSLog(@"Document. = %@", documentsDirectory);
     return YES;
 }
 

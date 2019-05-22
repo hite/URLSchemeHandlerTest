@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		480F49D3228BBFFC00138F13 /* SchemeURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 480F49D2228BBFFC00138F13 /* SchemeURLProtocol.m */; };
+		480F49DD229062AD00138F13 /* WebConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 480F49DC229062AD00138F13 /* WebConfig.m */; };
 		483515FA226A2A3400547968 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 483515F9226A2A3400547968 /* AppDelegate.m */; };
 		483515FD226A2A3400547968 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483515FC226A2A3400547968 /* ViewController.m */; };
 		48351600226A2A3400547968 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483515FE226A2A3400547968 /* Main.storyboard */; };
@@ -14,9 +16,14 @@
 		48351605226A2A3600547968 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48351603226A2A3600547968 /* LaunchScreen.storyboard */; };
 		48351608226A2A3600547968 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48351607226A2A3600547968 /* main.m */; };
 		4835160F226AE8EA00547968 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 4835160E226AE8EA00547968 /* index.html */; };
+		48677A9D2283F9750050340C /* dll.js in Resources */ = {isa = PBXBuildFile; fileRef = 48677A9C2283F9750050340C /* dll.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		480F49D1228BBFFC00138F13 /* SchemeURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchemeURLProtocol.h; sourceTree = "<group>"; };
+		480F49D2228BBFFC00138F13 /* SchemeURLProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchemeURLProtocol.m; sourceTree = "<group>"; };
+		480F49DB229062AD00138F13 /* WebConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebConfig.h; sourceTree = "<group>"; };
+		480F49DC229062AD00138F13 /* WebConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebConfig.m; sourceTree = "<group>"; };
 		483515F5226A2A3400547968 /* URLSchemeHandlerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = URLSchemeHandlerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		483515F8226A2A3400547968 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		483515F9226A2A3400547968 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -28,6 +35,7 @@
 		48351606226A2A3600547968 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48351607226A2A3600547968 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4835160E226AE8EA00547968 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		48677A9C2283F9750050340C /* dll.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dll.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,14 +69,19 @@
 			isa = PBXGroup;
 			children = (
 				4835160E226AE8EA00547968 /* index.html */,
+				480F49D1228BBFFC00138F13 /* SchemeURLProtocol.h */,
+				480F49D2228BBFFC00138F13 /* SchemeURLProtocol.m */,
 				483515F8226A2A3400547968 /* AppDelegate.h */,
 				483515F9226A2A3400547968 /* AppDelegate.m */,
+				480F49DB229062AD00138F13 /* WebConfig.h */,
+				480F49DC229062AD00138F13 /* WebConfig.m */,
 				483515FB226A2A3400547968 /* ViewController.h */,
 				483515FC226A2A3400547968 /* ViewController.m */,
 				483515FE226A2A3400547968 /* Main.storyboard */,
 				48351601226A2A3600547968 /* Assets.xcassets */,
 				48351603226A2A3600547968 /* LaunchScreen.storyboard */,
 				48351606226A2A3600547968 /* Info.plist */,
+				48677A9C2283F9750050340C /* dll.js */,
 				48351607226A2A3600547968 /* main.m */,
 			);
 			path = URLSchemeHandlerTest;
@@ -131,6 +144,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48677A9D2283F9750050340C /* dll.js in Resources */,
 				48351605226A2A3600547968 /* LaunchScreen.storyboard in Resources */,
 				4835160F226AE8EA00547968 /* index.html in Resources */,
 				48351602226A2A3600547968 /* Assets.xcassets in Resources */,
@@ -145,6 +159,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				480F49D3228BBFFC00138F13 /* SchemeURLProtocol.m in Sources */,
+				480F49DD229062AD00138F13 /* WebConfig.m in Sources */,
 				483515FD226A2A3400547968 /* ViewController.m in Sources */,
 				48351608226A2A3600547968 /* main.m in Sources */,
 				483515FA226A2A3400547968 /* AppDelegate.m in Sources */,
@@ -292,6 +308,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5F3P75AV37;
 				INFOPLIST_FILE = URLSchemeHandlerTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,6 +326,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5F3P75AV37;
 				INFOPLIST_FILE = URLSchemeHandlerTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
